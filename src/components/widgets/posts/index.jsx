@@ -1,32 +1,50 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setPosts } from "../../../store";
+import { useEffect, useState } from "react";
 import PostWidget from "../post";
 
 const PostsWidget = ({ userId, isProfile = false }) => {
-  const dispatch = useDispatch();
-  const posts = useSelector((state) => state.posts);
-  const token = useSelector((state) => state.token);
+  const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    const response = await fetch("http://localhost:8080/posts", {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await response.json();
-    dispatch(setPosts({ posts: data }));
+    setPosts([]);
   };
 
   const getUserPosts = async () => {
-    const response = await fetch(
-      `http://localhost:8080/posts/${userId}/posts`,
+    setPosts([
       {
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-    const data = await response.json();
-    dispatch(setPosts({ posts: data }));
+        _id: 2,
+        userId: 1,
+        firstName: "Steve",
+        lastName: "Ralph",
+        location: "New York, CA",
+        description: "Some really long random description",
+        picturePath: "post1.jpeg",
+        userPicturePath: "p3.jpeg",
+        likes: [1, 2, 3],
+        comments: [
+          "random comment",
+          "another random comment",
+          "yet another random comment",
+        ],
+      },
+      {
+        _id: 4,
+        userId: 1,
+        firstName: "Whatcha",
+        lastName: "Doing",
+        location: "Korea, CA",
+        description:
+          "Another really long random description. This one is longer than the previous one.",
+        picturePath: "post2.jpeg",
+        userPicturePath: "p6.jpeg",
+        likes: [1, 2, 3],
+        comments: [
+          "one more random comment",
+          "and another random comment",
+          "no more random comments",
+          "I lied, one more random comment",
+        ],
+      },
+    ]);
   };
 
   useEffect(() => {

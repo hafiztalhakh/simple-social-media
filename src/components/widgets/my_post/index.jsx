@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import Dropzone from "react-dropzone";
 import {
   EditOutlined,
@@ -23,38 +22,18 @@ import {
 import UserImage from "../../global/user_avatar";
 import WidgetWrapper from "../../ui/widget_wrapper";
 import FlexBetween from "../../ui/flex_between";
-import { setPosts } from "../../../store";
 
 const MyPostWidget = ({ picturePath }) => {
-  const dispatch = useDispatch();
   const [isImage, setIsImage] = useState(false);
   const [image, setImage] = useState(null);
   const [post, setPost] = useState("");
   const { palette } = useTheme();
-  const { _id } = useSelector((state) => state.user);
-  const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
 
   const handlePost = async () => {
-    const formData = new FormData();
-    formData.append("userId", _id);
-    formData.append("description", post);
-    if (image) {
-      formData.append("picture", image);
-      formData.append("picturePath", image.name);
-    }
-
-    const response = await fetch(`http://localhost:8080/posts`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${token}` },
-      body: formData,
-    });
-    const posts = await response.json();
-    dispatch(setPosts({ posts }));
-    setImage(null);
-    setPost("");
+    alert("Your thoughts has been posted!");
   };
 
   return (

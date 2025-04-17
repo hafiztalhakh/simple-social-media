@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { Box, useMediaQuery } from "@mui/material";
 
 import Navbar from "../../components/global/navbar";
@@ -10,7 +9,6 @@ import FriendListWidget from "../../components/widgets/friend_list";
 
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-  const { _id, picturePath } = useSelector((state) => state.user);
 
   return (
     <Box>
@@ -23,20 +21,20 @@ const HomePage = () => {
         justifyContent="space-between"
       >
         <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
-          <UserWidget userId={_id} picturePath={picturePath} />
+          <UserWidget userId={1} picturePath={"/assets/dummy_dp.jpg"} />
         </Box>
         <Box
           flexBasis={isNonMobileScreens ? "42%" : undefined}
           mt={isNonMobileScreens ? undefined : "2rem"}
         >
-          <MyPostWidget picturePath={picturePath} />
-          <PostsWidget userId={_id} />
+          <MyPostWidget picturePath={"/assets/dummy_dp.jpg"} />
+          <PostsWidget userId={1} />
         </Box>
         {isNonMobileScreens && (
           <Box flexBasis="26%">
             <AdvertWidget />
             <Box m="2rem 0" />
-            <FriendListWidget userId={_id} />
+            <FriendListWidget userId={1} />
           </Box>
         )}
       </Box>

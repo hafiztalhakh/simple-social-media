@@ -12,31 +12,25 @@ import UserImage from "../../global/user_avatar";
 import FlexBetween from "../../ui/flex_between";
 import WidgetWrapper from "../../ui/widget_wrapper";
 
+const user = {
+  firstName: "Talha",
+  lastName: "Ahmed Khalid",
+  email: "hafiz.talhakh@gmail.com",
+  picturePath: "/assets/dummy_dp.jpg",
+  friends: [],
+  location: "Gulshan-e-Maymar, Karachi",
+  occupation: "Software Consultant",
+  viewedProfile: 9,
+  impressions: 13,
+};
+
 const UserWidget = ({ userId, picturePath }) => {
-  const [user, setUser] = useState(null);
+
   const { palette } = useTheme();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.token);
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
-
-  const getUser = async () => {
-    const response = await fetch(`http://localhost:8080/users/${userId}`, {
-      method: "GET",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = await response.json();
-    setUser(data);
-  };
-
-  useEffect(() => {
-    getUser();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
-
-  if (!user) {
-    return null;
-  }
 
   const {
     firstName,

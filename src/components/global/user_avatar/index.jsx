@@ -10,7 +10,7 @@ const UserAvatar = ({ size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={`${baseUrl}assets/dummy_dp.jpg`}
+        src={`${baseUrl}/assets/dummy_dp.jpg`}
       />
     </Box>
   );

@@ -7,6 +7,7 @@ const AdvertWidget = () => {
   const dark = palette.neutral.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
+  const baseUrl = import.meta.env.BASE_URL ?? "/";
 
   return (
     <WidgetWrapper>
@@ -20,7 +21,7 @@ const AdvertWidget = () => {
         width="100%"
         height="auto"
         alt="advert"
-        src="/assets/info4.jpeg"
+        src={`${baseUrl}/assets/info4.jpeg`}
         style={{ borderRadius: "0.75rem", margin: "0.75rem 0" }}
       />
       <FlexBetween>

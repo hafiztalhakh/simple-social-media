@@ -1,51 +1,22 @@
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { Box, IconButton, Typography, useTheme } from "@mui/material";
 import { PersonAddOutlined, PersonRemoveOutlined } from "@mui/icons-material";
 import FlexBetween from "../../../components/ui/flex_between";
 import UserImage from "../../../components/global/user_avatar";
-import { setFriends } from "../../../store";
 
-const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { _id } = useSelector((state) => state.user);
-  const token = useSelector((state) => state.token);
-  const friends = useSelector((state) => state.user.friends);
-
+const Friend = ({ name, subtitle, userPicturePath }) => {
   const { palette } = useTheme();
   const primaryLight = palette.primary.light;
   const primaryDark = palette.primary.dark;
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
-  const isFriend = friends.find((friend) => friend._id === friendId);
-
-  const patchFriend = async () => {
-    const response = await fetch(
-      `http://localhost:8080/users/${_id}/${friendId}`,
-      {
-        method: "PATCH",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    const data = await response.json();
-    dispatch(setFriends({ friends: data }));
-  };
+  const isFriend = true;
 
   return (
     <FlexBetween>
       <FlexBetween gap="1rem">
-        <UserImage image={userPicturePath} size="55px" />
-        <Box
-          onClick={() => {
-            navigate(`/profile/${friendId}`);
-            navigate(0);
-          }}
-        >
+        <UserImage size="55px" />
+        <Box>
           <Typography
             color={main}
             variant="h5"

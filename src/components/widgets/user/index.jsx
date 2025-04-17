@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   ManageAccountsOutlined,
@@ -24,13 +22,13 @@ const user = {
   impressions: 13,
 };
 
-const UserWidget = ({ userId, picturePath }) => {
-
+const UserWidget = () => {
   const { palette } = useTheme();
   const navigate = useNavigate();
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
+  const baseUrl = import.meta.env.BASE_URL ?? "/";
 
   const {
     firstName,
@@ -39,7 +37,6 @@ const UserWidget = ({ userId, picturePath }) => {
     occupation,
     viewedProfile,
     impressions,
-    friends,
   } = user;
 
   return (
@@ -48,10 +45,10 @@ const UserWidget = ({ userId, picturePath }) => {
       <FlexBetween
         gap="0.5rem"
         pb="1.1rem"
-        onClick={() => navigate(`/profile/${userId}`)}
+        onClick={() => navigate(`/profile/1`)}
       >
         <FlexBetween gap="1rem">
-          <UserImage image={picturePath} />
+          <UserImage />
           <Box>
             <Typography
               variant="h4"
@@ -66,7 +63,7 @@ const UserWidget = ({ userId, picturePath }) => {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.length} friends</Typography>
+            <Typography color={medium}>1 friend</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />
@@ -114,7 +111,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
         <FlexBetween gap="1rem" mb="0.5rem">
           <FlexBetween gap="1rem">
-            <img src="/assets/twitter.png" alt="twitter" />
+            <img src={`${baseUrl}/assets/twitter.png`} alt="twitter" />
             <Box>
               <Typography color={main} fontWeight="500">
                 Twitter
@@ -127,7 +124,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
-            <img src="/assets/linkedin.png" alt="linkedin" />
+            <img src={`${baseUrl}/assets/linkedin.png`} alt="linkedin" />
             <Box>
               <Typography color={main} fontWeight="500">
                 Linkedin

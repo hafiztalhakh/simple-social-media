@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
@@ -10,10 +9,8 @@ import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
 import FlexBetween from "../../ui/flex_between";
 import Friend from "../../global/friend";
 import WidgetWrapper from "../../ui/widget_wrapper";
-import { setPost } from "../../../store";
 
 const PostWidget = ({
-  postId,
   postUserId,
   name,
   description,
@@ -24,27 +21,16 @@ const PostWidget = ({
   comments,
 }) => {
   const [isComments, setIsComments] = useState(false);
-  const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
-  const loggedInUserId = useSelector((state) => state.user._id);
-  const isLiked = Boolean(likes[loggedInUserId]);
+  const isLiked = Boolean(likes[1]);
   const likeCount = Object.keys(likes).length;
 
   const { palette } = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
+  const baseUrl = import.meta.env.BASE_URL ?? "/";
 
-  const patchLike = async () => {
-    const response = await fetch(`http://localhost:8080/posts/${postId}/like`, {
-      method: "PATCH",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userId: loggedInUserId }),
-    });
-    const updatedPost = await response.json();
-    dispatch(setPost({ post: updatedPost }));
+  const patchLike = () => {
+    alert("Liked!");
   };
 
   return (
@@ -64,7 +50,7 @@ const PostWidget = ({
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:8080/assets/${picturePath}`}
+          src={`${baseUrl}/assets/${picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">

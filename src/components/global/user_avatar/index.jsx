@@ -1,6 +1,8 @@
 import { Box } from "@mui/material";
 
-const UserAvatar = ({ image, size = "60px" }) => {
+const UserAvatar = ({ size = "60px" }) => {
+  const baseUrl = import.meta.env.BASE_URL ?? "/";
+
   return (
     <Box width={size} height={size}>
       <img
@@ -8,7 +10,7 @@ const UserAvatar = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={`http://localhost:8080/assets/${image}`}
+        src={`${baseUrl}assets/dummy_dp.jpg`}
       />
     </Box>
   );

@@ -1,50 +1,16 @@
 import { useEffect, useState } from "react";
 import PostWidget from "../post";
+import { newsFeedPosts, profilePosts } from "../../../data";
 
-const PostsWidget = ({ userId, isProfile = false }) => {
+const PostsWidget = ({ isProfile = false }) => {
   const [posts, setPosts] = useState([]);
 
   const getPosts = async () => {
-    setPosts([]);
+    setPosts(newsFeedPosts);
   };
 
   const getUserPosts = async () => {
-    setPosts([
-      {
-        _id: 2,
-        userId: 1,
-        firstName: "Steve",
-        lastName: "Ralph",
-        location: "New York, CA",
-        description: "Some really long random description",
-        picturePath: "post1.jpeg",
-        userPicturePath: "p3.jpeg",
-        likes: [1, 2, 3],
-        comments: [
-          "random comment",
-          "another random comment",
-          "yet another random comment",
-        ],
-      },
-      {
-        _id: 4,
-        userId: 1,
-        firstName: "Whatcha",
-        lastName: "Doing",
-        location: "Korea, CA",
-        description:
-          "Another really long random description. This one is longer than the previous one.",
-        picturePath: "post2.jpeg",
-        userPicturePath: "p6.jpeg",
-        likes: [1, 2, 3],
-        comments: [
-          "one more random comment",
-          "and another random comment",
-          "no more random comments",
-          "I lied, one more random comment",
-        ],
-      },
-    ]);
+    setPosts(profilePosts);
   };
 
   useEffect(() => {

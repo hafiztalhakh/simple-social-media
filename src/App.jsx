@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="app">
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL ?? "/"}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>

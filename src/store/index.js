@@ -2,7 +2,18 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   mode: "light",
-  user: null,
+  user: {
+    _id: "1",
+    firstName: "Talha",
+    lastName: "Khalid",
+    email: "official.talhaahmedkhalid@gmail.com",
+    location: "Gulshan-e-Maymar, Karachi",
+    occupation: "Software Consultant",
+    picturePath: "",
+    friends: ["67fe67e94611a9b9b30a537c"],
+    viewedProfile: 19,
+    impressions: 40,
+  },
   token: null,
   posts: [],
 };

@@ -36,7 +36,7 @@ const Form = () => {
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
 
-  const handleFormSubmit = async (values, onSubmitProps) => {
+  const handleFormSubmit = async () => {
     if (isLogin) {
       navigate("/home");
     }

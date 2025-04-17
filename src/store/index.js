@@ -14,7 +14,7 @@ const initialState = {
     viewedProfile: 19,
     impressions: 40,
   },
-  token: null,
+  token: true,
   posts: [],
 };
 
